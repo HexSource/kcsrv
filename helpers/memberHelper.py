@@ -5,8 +5,6 @@ from flask import g
 
 from db import db, Equipment, Kanmusu, KanmusuEquipment, AdmiralEquipment
 from constants import *
-from . import LevelHelper
-
 
 def kanmusu(kanmusu):
     ship = kanmusu.ship
@@ -33,7 +31,7 @@ def kanmusu(kanmusu):
         'api_taiku': [kanmusu.stats.antiair, ship.max_stats.antiair],
         'api_leng': ship.max_stats.range_,
         'api_taisen': [kanmusu.stats.antisub, ship.max_stats.antisub],  # Guesswork on exp part.
-        'api_exp': [kanmusu.experience, LevelHelper.get_exp_required(kanmusu.level, kanmusu.experience), 0],
+        'api_exp': [kanmusu.experience, kanmusu.get_exp_to_levelup(), 0],
         'api_slot': equips,
         'api_backs': ship.rarity,
         'api_sally_area': 0,  # dunno

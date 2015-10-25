@@ -104,13 +104,13 @@ class Kanmusu(db.Model):
         db.session.add(self.admiral)
         db.session.commit()
 
-    def get_exp_to_level(self):
+    def get_exp_to_levelup(self):
         """
         Gets the exp missing for the next level.
         :param level: The level to attain.
         :param current_exp: Your current exp.
         """
-        total = sum(EXP_LEVEL[:EXP_LEVEL + 1])
+        total = sum(EXP_LEVEL[:self.level + 1])
         return total - self.experience
 
 class KanmusuEquipment(db.Model):
